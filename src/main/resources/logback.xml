@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- For assistance related to logback-translator or configuration -->
+<!-- files in general, please contact the logback user mailing list -->
+<!-- at http://www.qos.ch/mailman/listinfo/logback-user -->
+<!--  -->
+<!-- For professional support please see -->
+<!-- http://www.qos.ch/shop/products/professionalSupport -->
+<!--  -->
+<configuration>
+	<!-- appender with name STDOUT -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>
+				DEBUG
+			</level>
+			<onMatch>
+				DENY
+			</onMatch>
+			<onMismatch>
+				ACCEPT
+			</onMismatch>
+		</filter>
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<!-- print format (using date, thread, level, logger name and message -->
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+			</Pattern>
+		</layout>
+	</appender>
+	<appender name="LOGFILE" class="ch.qos.logback.core.FileAppender">
+		<!-- file name to use here (can be absolute) -->
+		<file>
+			myLogFile.log
+		</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss} - %msg%n
+			</Pattern>
+		</encoder>
+	</appender>
+	<!-- named logger used by every class in our project -->
+	<logger name="edu.bbte.bibliospring.backend" level="DEBUG" additivity="false">
+		<appender-ref ref="LOGFILE" />
+		<appender-ref ref="STDOUT" />
+	</logger>
+	<!-- root logger (used by all else) -->
+	<root level="info">
+		<appender-ref ref="STDOUT" />
+	</root>
+</configuration>

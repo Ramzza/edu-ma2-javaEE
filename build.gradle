@@ -1,0 +1,30 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.0'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'edu.bbte'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+    compile group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
+    runtime group: 'org.hibernate', name: 'hibernate-core', version: '5.4.11.Final'
+    runtime group: 'ch.qos.logback', name:'logback-classic', version:'1.2.3'	
+    runtimeOnly 'mysql:mysql-connector-java:8.0.15'
+
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
